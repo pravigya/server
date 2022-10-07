@@ -4,9 +4,9 @@ const auth = require("../middleware/auth");
 
 router.post("/", auth, async (req, res) => {
   try {
-    const { name } = req.body;
+    const { name ,phoneNo } = req.body;
     const newCustomer = new Customer({
-      name,
+      name,phoneNo
     });
     const savedCustomer = await newCustomer.save();
 

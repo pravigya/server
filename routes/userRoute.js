@@ -6,11 +6,11 @@ const jwt = require("jsonwebtoken");
 //register
 router.post("/", async (req, res) => {
   try {
-    const { email, password, passwordVerify } = req.body;
+    const { email, password, passwordVerify , phoneNo  } = req.body;
 
     //validation
 
-    if (!email || !password || !passwordVerify)
+    if (!email || !password || !passwordVerify || !phoneNo)
       return res.status(400).json({ errorMessage: "Please enter all fields" });
 
     if (password.length < 6)
@@ -30,6 +30,7 @@ router.post("/", async (req, res) => {
     const newUser = new User({
       email,
       passwordHash,
+      phoneNo
     });
 
     const savedUser = await newUser.save();
